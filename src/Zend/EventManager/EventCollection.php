@@ -102,7 +102,7 @@ interface Zend_EventManager_EventCollection
      * Clear all listeners for a given event
      *
      * @param  string $event
-     * @return void
+     * @return mixed
      */
     public function clearListeners($event);
 }

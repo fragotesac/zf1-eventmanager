@@ -33,7 +33,7 @@
 class Zend_EventManager_GlobalEventManager
 {
     /**
-     * @var Zend_EventManager_EventCollection
+     * @var Zend_EventManager_EventCollection|null
      */
     protected static $events;
 
@@ -138,7 +138,7 @@ class Zend_EventManager_GlobalEventManager
      * Clear all listeners for a given event
      *
      * @param  string $event
-     * @return void
+     * @return mixed
      */
     public static function clearListeners($event)
     {

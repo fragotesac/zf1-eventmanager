@@ -19,8 +19,6 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-require_once 'Zend/EventManager/GlobalEventManager.php';
-require_once 'Zend/EventManager/EventManager.php';
 
 /**
  * @category   Zend

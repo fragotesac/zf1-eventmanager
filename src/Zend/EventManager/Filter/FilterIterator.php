@@ -20,7 +20,7 @@
 
 
 /**
- * Specialized priority queue implementation for use with an intercepting 
+ * Specialized priority queue implementation for use with an intercepting
  * filter chain.
  *
  * Allows removal
@@ -34,8 +34,8 @@ class Zend_EventManager_Filter_FilterIterator extends Zend_Stdlib_SplPriorityQue
 {
     /**
      * Does the queue contain a given value?
-     * 
-     * @param  mixed $datum 
+     *
+     * @param  mixed $datum
      * @return bool
      */
     public function contains($datum)
@@ -54,8 +54,8 @@ class Zend_EventManager_Filter_FilterIterator extends Zend_Stdlib_SplPriorityQue
      *
      * This is an expensive operation. It must first iterate through all values,
      * and then re-populate itself. Use only if absolutely necessary.
-     * 
-     * @param  mixed $datum 
+     *
+     * @param  mixed $datum
      * @return bool
      */
     public function remove($datum)
@@ -96,7 +96,7 @@ class Zend_EventManager_Filter_FilterIterator extends Zend_Stdlib_SplPriorityQue
      */
     public function next($context = null, array $params = array(), $chain = null)
     {
-        if (empty($context) || $chain->isEmpty()) {
+        if (empty($context) || $chain === null || $chain->isEmpty()) {
             return;
         }
 

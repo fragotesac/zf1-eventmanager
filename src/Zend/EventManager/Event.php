@@ -161,7 +161,7 @@ class Zend_EventManager_Event implements Zend_EventManager_EventDescription
      * Set the event name
      *
      * @param  string $name
-     * @return Zend_EventManager_Event
+     * @return $this
      */
     public function setName($name)
     {
@@ -172,8 +172,8 @@ class Zend_EventManager_Event implements Zend_EventManager_EventDescription
     /**
      * Set the event target/context
      *
-     * @param  null|string|object $target
-     * @return Zend_EventManager_Event
+     * @param  string|object $target
+     * @return $this
      */
     public function setTarget($target)
     {
@@ -186,7 +186,7 @@ class Zend_EventManager_Event implements Zend_EventManager_EventDescription
      *
      * @param  string|int $name
      * @param  mixed $value
-     * @return Zend_EventManager_Event
+     * @return $this
      */
     public function setParam($name, $value)
     {

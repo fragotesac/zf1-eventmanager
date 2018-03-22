@@ -20,8 +20,6 @@
  * @version    $Id:$
  */
 
-require_once 'Zend/EventManager/FilterChain.php';
-require_once 'Zend/Stdlib/CallbackHandler.php';
 
 /**
  * @category   Zend

@@ -19,8 +19,6 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-require_once 'Zend/EventManager/EventManager.php';
-require_once 'Zend/EventManager/StaticEventManager.php';
 
 /**
  * @category   Zend
@@ -225,6 +223,8 @@ class Zend_EventManager_StaticEventManagerTest extends PHPUnit\Framework\TestCas
     {
         $identifiers = array('foo', 'bar');
         $manager = new Zend_EventManager_EventManager($identifiers);
+
+        $this->assertTrue(true);
     }
 
     public function testListenersAttachedToAnyIdentifierProvidedToEventManagerWillBeTriggered()

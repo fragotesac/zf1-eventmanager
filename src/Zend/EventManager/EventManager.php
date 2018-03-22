@@ -34,14 +34,14 @@ class Zend_EventManager_EventManager implements Zend_EventManager_EventCollectio
 {
     /**
      * Subscribed events and their listeners
-     * @var array Array of Zend_Stdlib_PriorityQueue objects
+     * @var Zend_Stdlib_PriorityQueue[] Array of Zend_Stdlib_PriorityQueue objects
      */
     protected $events = array();
 
     /**
      * @var string Class representing the event being emitted
      */
-    protected $eventClass = 'Zend_EventManager_Event';
+    protected $eventClass = Zend_EventManager_Event::class;
 
     /**
      * Identifiers, used to pull static signals from StaticEventManager
@@ -51,9 +51,9 @@ class Zend_EventManager_EventManager implements Zend_EventManager_EventCollectio
 
     /**
      * Static collections
-     * @var false|null|Zend_EventManager_SharedEventCollection
+     * @var false|Zend_EventManager_SharedEventCollection
      */
-    protected $sharedCollections = null;
+    protected $sharedCollections;
 
     /**
      * Constructor
@@ -73,7 +73,7 @@ class Zend_EventManager_EventManager implements Zend_EventManager_EventCollectio
      * Set the event class to utilize
      *
      * @param  string $class
-     * @return Zend_EventManager_EventManager
+     * @return $this
      */
     public function setEventClass($class)
     {
@@ -133,7 +133,7 @@ class Zend_EventManager_EventManager implements Zend_EventManager_EventCollectio
      * Set the identifiers (overrides any currently set identifiers)
      *
      * @param string|int|array|Traversable $identifiers
-     * @return Zend_EventManager_EventManager
+     * @return $this
      */
     public function setIdentifiers($identifiers)
     {
@@ -149,7 +149,7 @@ class Zend_EventManager_EventManager implements Zend_EventManager_EventCollectio
      * Add some identifier(s) (appends to any currently set identifiers)
      *
      * @param string|int|array|Traversable $identifiers
-     * @return Zend_EventManager_EventManager
+     * @return $this
      */
     public function addIdentifiers($identifiers)
     {
@@ -264,11 +264,11 @@ class Zend_EventManager_EventManager implements Zend_EventManager_EventCollectio
     {
         // Proxy ListenerAggregate arguments to attachAggregate()
         if ($event instanceof Zend_EventManager_ListenerAggregate) {
-            return $this->attachAggregate($event, $callback);
+            return $this->attachAggregate($event, (int) $callback);
         }
 
         // Null callback is invalid
-        if (null === $callback) {
+        if (null === $callback || is_int($callback)) {
             throw new Zend_EventManager_Exception_InvalidArgumentException(sprintf(
                 '%s: expects a callback; none provided',
                 __METHOD__
@@ -516,7 +516,7 @@ class Zend_EventManager_EventManager implements Zend_EventManager_EventCollectio
      * Used to inject shared listeners and wildcard listeners.
      *
      * @param  Zend_Stdlib_PriorityQueue $masterListeners
-     * @param  Zend_Stdlib_PriorityQueue $listeners
+     * @param  Zend_Stdlib_PriorityQueue|array $listeners
      * @return void
      */
     protected function insertListeners($masterListeners, $listeners)

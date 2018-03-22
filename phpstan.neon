@@ -1,0 +1,9 @@
+parameters:
+    ignoreErrors:
+        - '#Access to an undefined property Zend_EventManager_FilterChain::\$responses\.#'
+        - '#Casting to .+ something that.s already .+\.#'
+        - '#Method Zend_EventManager_GlobalEventManager::getEventCollection\(\) should return Zend_EventManager_EventCollection but returns Zend_EventManager_EventCollection\|null\.#'
+        - '#Method Zend_EventManager_ListenerAggregate::attach\(\) invoked with 2 parameters, 1 required\.#'
+        - '#Parameter \#1 \$identifiers of method Zend_EventManager_EventManager::setIdentifiers\(\) expects array\|int\|string\|Traversable, array\|int\|string\|Traversable\|null given\.#'
+        - '#Parameter \#3 \$callback of method Zend_EventManager_EventManager::triggerListeners\(\) expects callable\|null, array\|callable\|object\|string\|null given\.#'
+        - '#Strict comparison using !== between int\|string and null will always evaluate to true\.#'
