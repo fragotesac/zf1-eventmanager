@@ -58,7 +58,7 @@ class Zend_EventManager_EventManagerTest extends PHPUnit\Framework\TestCase
         $events = $this->events->getEvents();
         $this->assertEmpty($events, var_export($events, 1));
         $listener = $this->events->attach('test', array($this, __METHOD__));
-        $events = $this->events->getEvents();
+        $events   = $this->events->getEvents();
         $this->assertNotEmpty($events);
         $this->assertContains('test', $events);
     }
@@ -79,7 +79,7 @@ class Zend_EventManager_EventManagerTest extends PHPUnit\Framework\TestCase
 
     public function testPassingArrayOfEventNamesWhenAttachingReturnsArrayOfCallbackHandlers()
     {
-        $callback = array($this, 'returnName');
+        $callback  = array($this, 'returnName');
         $listeners = $this->events->attach(array('foo', 'bar'), $callback);
 
         $this->assertInternalType('array', $listeners);
@@ -167,7 +167,7 @@ class Zend_EventManager_EventManagerTest extends PHPUnit\Framework\TestCase
 
     public function handleTestEvent($e)
     {
-        $message = $e->getParam('message', '__NOT_FOUND__');
+        $message       = $e->getParam('message', '__NOT_FOUND__');
         $this->message = $message;
     }
 
@@ -277,7 +277,7 @@ class Zend_EventManager_EventManagerTest extends PHPUnit\Framework\TestCase
         $listenerFooBar1 = $this->events->attach('foo.bar', array($this, 'returnTrue'));
         $listenerFooBar2 = $this->events->attach('foo.bar', array($this, 'returnTrue'));
         $listenerFooBaz1 = $this->events->attach('foo.baz', array($this, 'returnTrue'));
-        $listenerOther   = $this->events->attach('other',   array($this, 'returnTrue'));
+        $listenerOther   = $this->events->attach('other', array($this, 'returnTrue'));
 
         $aggregate = new Zend_EventManager_TestAsset_MockAggregate();
         $this->events->attach($aggregate);
@@ -353,8 +353,8 @@ class Zend_EventManager_EventManagerTest extends PHPUnit\Framework\TestCase
     {
         $this->foo = 'FOO';
         $this->bar = 'BAR';
-        $params = array( 'foo' => 'bar', 'bar' => 'baz');
-        $args   = $this->events->prepareArgs($params);
+        $params    = array( 'foo' => 'bar', 'bar' => 'baz');
+        $args      = $this->events->prepareArgs($params);
         $this->events->attach('foo.bar', array($this, 'setParamFoo'));
         $this->events->attach('foo.bar', array($this, 'setParamBar'));
         $responses = $this->events->trigger('foo.bar', $this, $args);
@@ -366,7 +366,7 @@ class Zend_EventManager_EventManagerTest extends PHPUnit\Framework\TestCase
     {
         $this->foo = 'FOO';
         $this->bar = 'BAR';
-        $params = (object) array( 'foo' => 'bar', 'bar' => 'baz');
+        $params    = (object) array( 'foo' => 'bar', 'bar' => 'baz');
         $this->events->attach('foo.bar', array($this, 'setParamFoo'));
         $this->events->attach('foo.bar', array($this, 'setParamBar'));
         $responses = $this->events->trigger('foo.bar', $this, $params);
@@ -453,7 +453,7 @@ class Zend_EventManager_EventManagerTest extends PHPUnit\Framework\TestCase
         $this->assertTrue($responses->stopped());
 
         // Second: Event as $argv parameter:
-        $event = new Zend_EventManager_Event();
+        $event     = new Zend_EventManager_Event();
         $responses = $this->events->trigger(__FUNCTION__, $this, $event, array($this, 'returnOnEvent'));
         $this->assertTrue($responses->stopped());
 
@@ -485,14 +485,14 @@ class Zend_EventManager_EventManagerTest extends PHPUnit\Framework\TestCase
 
         unset($functor);
 
-        $result = $this->events->trigger('test', $this, array());
+        $result  = $this->events->trigger('test', $this, array());
         $message = $result->last();
         $this->assertNull($message);
     }
 
     public function testDuplicateIdentifiersAreNotRegistered()
     {
-        $events = new Zend_EventManager_EventManager(array(__CLASS__, get_class($this)));
+        $events      = new Zend_EventManager_EventManager(array(__CLASS__, get_class($this)));
         $identifiers = $events->getIdentifiers();
         $this->assertSame(count($identifiers), 1);
         $this->assertSame($identifiers[0], __CLASS__);
@@ -636,7 +636,7 @@ class Zend_EventManager_EventManagerTest extends PHPUnit\Framework\TestCase
     {
         $foo = $e->getParam('foo', '__NO_FOO__');
         $bar = $e->getParam('bar', '__NO_BAR__');
-        return $foo . ":" . $bar;
+        return $foo . ':' . $bar;
     }
 
     public function returnEvent($e)

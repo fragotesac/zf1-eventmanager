@@ -1,4 +1,7 @@
 parameters:
+    excludes_analyse:
+        - %rootDir%/../../../vendor/*
+        - %rootDir%/../../../tests/*
     ignoreErrors:
         - '#Access to an undefined property Zend_EventManager_FilterChain::\$responses\.#'
         - '#Casting to .+ something that.s already .+\.#'

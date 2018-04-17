@@ -54,7 +54,7 @@ class Zend_EventManager_GlobalEventManagerTest extends PHPUnit\Framework\TestCas
     public function testProxiesAllStaticOperationsToEventCollectionInstance()
     {
         $this->test = new stdClass();
-        $listener = Zend_EventManager_GlobalEventManager::attach('foo.bar', array($this, 'aggregateEventMetadata'));
+        $listener   = Zend_EventManager_GlobalEventManager::attach('foo.bar', array($this, 'aggregateEventMetadata'));
         $this->assertTrue($listener instanceof Zend_Stdlib_CallbackHandler);
 
         Zend_EventManager_GlobalEventManager::trigger('foo.bar', $this, array('foo' => 'bar'));
@@ -79,8 +79,8 @@ class Zend_EventManager_GlobalEventManagerTest extends PHPUnit\Framework\TestCas
         $this->assertEquals(array(), $events);
 
         $this->test = new stdClass;
-        $listener = Zend_EventManager_GlobalEventManager::attach('foo.bar', array($this, 'aggregateEventMetadata'));
-        $events = Zend_EventManager_GlobalEventManager::getEvents();
+        $listener   = Zend_EventManager_GlobalEventManager::attach('foo.bar', array($this, 'aggregateEventMetadata'));
+        $events     = Zend_EventManager_GlobalEventManager::getEvents();
         $this->assertEquals(array('foo.bar'), $events);
         Zend_EventManager_GlobalEventManager::clearListeners('foo.bar');
         $events = Zend_EventManager_GlobalEventManager::getEvents();

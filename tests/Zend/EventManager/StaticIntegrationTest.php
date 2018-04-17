@@ -102,7 +102,7 @@ class Zend_EventManager_StaticIntegrationTest extends PHPUnit\Framework\TestCase
             array($this, 'advanceCounter')
         );
         $mockStaticEvents = new Zend_EventManager_TestAsset_StaticEventsMock();
-        $class = new Zend_EventManager_TestAsset_ClassWithEvents();
+        $class            = new Zend_EventManager_TestAsset_ClassWithEvents();
         $class->events()->setSharedCollections($mockStaticEvents);
         $this->assertSame($mockStaticEvents, $class->events()->getSharedCollections());
         $class->foo();

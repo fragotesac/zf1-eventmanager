@@ -55,7 +55,7 @@ class Zend_EventManager_FilterChainTest extends PHPUnit\Framework\TestCase
 
     public function testDetachShouldRemoveCallbackHandlerFromFilters()
     {
-        $handle = $this->filterchain->attach(array( $this, __METHOD__ ));
+        $handle  = $this->filterchain->attach(array( $this, __METHOD__ ));
         $handles = $this->filterchain->getFilters();
         $this->assertTrue($handles->contains($handle));
         $this->filterchain->detach($handle);
@@ -88,7 +88,7 @@ class Zend_EventManager_FilterChainTest extends PHPUnit\Framework\TestCase
     public function testFilterIsPassedContextAndArguments()
     {
         $this->filterchain->attach(array( $this, 'filterTestCallback1' ));
-        $obj = (object) array('foo' => 'bar', 'bar' => 'baz');
+        $obj   = (object) array('foo' => 'bar', 'bar' => 'baz');
         $value = $this->filterchain->run($this, array('object' => $obj));
         $this->assertEquals('filtered', $value);
         $this->assertEquals('filterTestCallback1', $this->message);
@@ -134,7 +134,7 @@ class Zend_EventManager_FilterChainTest extends PHPUnit\Framework\TestCase
         if (isset($params['string'])) {
             $params['string'] = trim($params['string']);
         }
-        $return =  $chain->next($context, $params, $chain);
+        $return = $chain->next($context, $params, $chain);
         return $return;
     }
 
