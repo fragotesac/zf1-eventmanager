@@ -49,7 +49,7 @@ class Zend_EventManager_FilterChainTest extends PHPUnit\Framework\TestCase
     {
         $handler  = $this->filterchain->attach(array($this, __METHOD__));
         $handlers = $this->filterchain->getFilters();
-        $this->assertEquals(1, count($handlers));
+        $this->assertCount(1, $handlers);
         $this->assertTrue($handlers->contains($handler));
     }
 
@@ -74,7 +74,7 @@ class Zend_EventManager_FilterChainTest extends PHPUnit\Framework\TestCase
     public function testRetrievingAttachedFiltersShouldReturnEmptyArrayWhenNoFiltersExist()
     {
         $handles = $this->filterchain->getFilters();
-        $this->assertEquals(0, count($handles));
+        $this->assertCount(0, $handles);
     }
 
     public function testFilterChainShouldReturnLastResponse()

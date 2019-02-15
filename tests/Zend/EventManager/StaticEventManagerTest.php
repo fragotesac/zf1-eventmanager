@@ -175,7 +175,7 @@ class Zend_EventManager_StaticEventManagerTest extends PHPUnit\Framework\TestCas
         }
         $events->detach('foo', $listener);
         $listeners = $events->getListeners('foo', 'bar');
-        $this->assertEquals(0, count($listeners));
+        $this->assertCount(0, $listeners);
     }
 
     public function testCanGetEventsByResource()
@@ -191,7 +191,7 @@ class Zend_EventManager_StaticEventManagerTest extends PHPUnit\Framework\TestCas
         $events->attach('foo', 'bar', array($this, __FUNCTION__));
         $listeners = $events->getListeners('foo', 'bar');
         $this->assertTrue($listeners instanceof Zend_Stdlib_PriorityQueue);
-        $this->assertEquals(1, count($listeners));
+        $this->assertCount(1, $listeners);
     }
 
     public function testCanClearListenersByResource()
@@ -212,11 +212,11 @@ class Zend_EventManager_StaticEventManagerTest extends PHPUnit\Framework\TestCas
         $events->attach('foo', 'bat', array($this, __FUNCTION__));
         $events->clearListeners('foo', 'baz');
         $this->assertTrue($events->getListeners('foo', 'baz') instanceof Zend_Stdlib_PriorityQueue);
-        $this->assertEquals(0, count($events->getListeners('foo', 'baz')));
+        $this->assertCount(0, $events->getListeners('foo', 'baz'));
         $this->assertTrue($events->getListeners('foo', 'bar') instanceof Zend_Stdlib_PriorityQueue);
-        $this->assertEquals(1, count($events->getListeners('foo', 'bar')));
+        $this->assertCount(1, $events->getListeners('foo', 'bar'));
         $this->assertTrue($events->getListeners('foo', 'bat') instanceof Zend_Stdlib_PriorityQueue);
-        $this->assertEquals(1, count($events->getListeners('foo', 'bat')));
+        $this->assertCount(1, $events->getListeners('foo', 'bat'));
     }
 
     public function testCanPassArrayOfIdentifiersToConstructor()

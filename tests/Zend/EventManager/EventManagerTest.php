@@ -49,7 +49,7 @@ class Zend_EventManager_EventManagerTest extends PHPUnit\Framework\TestCase
     {
         $listener  = $this->events->attach('test', array($this, __METHOD__));
         $listeners = $this->events->getListeners('test');
-        $this->assertEquals(1, count($listeners));
+        $this->assertCount(1, $listeners);
         $this->assertContains($listener, $listeners);
     }
 
@@ -118,7 +118,7 @@ class Zend_EventManager_EventManagerTest extends PHPUnit\Framework\TestCase
     public function testRetrievingAttachedListenersShouldReturnEmptyArrayWhenEventDoesNotExist()
     {
         $listeners = $this->events->getListeners('test');
-        $this->assertEquals(0, count($listeners));
+        $this->assertCount(0, $listeners);
     }
 
     public function testTriggerShouldTriggerAttachedListeners()
@@ -159,7 +159,7 @@ class Zend_EventManager_EventManagerTest extends PHPUnit\Framework\TestCase
         $this->events->attach('string.transform', array($this, 'trimString'));
         $this->events->attach('string.transform', array($this, 'stringRot13'));
         $responses = $this->events->trigger('string.transform', $this, array('string' => ' foo '));
-        $this->assertEquals(2, count($responses));
+        $this->assertCount(2, $responses);
         $this->assertTrue($responses->contains('foo'));
         $this->assertTrue($responses->contains(str_rot13(' foo ')));
         $this->assertFalse($responses->contains(' foo '));
@@ -258,16 +258,16 @@ class Zend_EventManager_EventManagerTest extends PHPUnit\Framework\TestCase
         }
 
         $listeners = $this->events->getListeners('foo.bar');
-        $this->assertEquals(2, count($listeners));
+        $this->assertCount(2, $listeners);
         $this->assertContains($listenerFooBar1, $listeners);
         $this->assertContains($listenerFooBar2, $listeners);
 
         $listeners = $this->events->getListeners('foo.baz');
-        $this->assertEquals(1, count($listeners));
+        $this->assertCount(1, $listeners);
         $this->assertContains($listenerFooBaz1, $listeners);
 
         $listeners = $this->events->getListeners('other');
-        $this->assertEquals(1, count($listeners));
+        $this->assertCount(1, $listeners);
         $this->assertContains($listenerOther, $listeners);
     }
 
@@ -288,16 +288,16 @@ class Zend_EventManager_EventManagerTest extends PHPUnit\Framework\TestCase
         }
 
         $listeners = $this->events->getListeners('foo.bar');
-        $this->assertEquals(2, count($listeners));
+        $this->assertCount(2, $listeners);
         $this->assertContains($listenerFooBar1, $listeners);
         $this->assertContains($listenerFooBar2, $listeners);
 
         $listeners = $this->events->getListeners('foo.baz');
-        $this->assertEquals(1, count($listeners));
+        $this->assertCount(1, $listeners);
         $this->assertContains($listenerFooBaz1, $listeners);
 
         $listeners = $this->events->getListeners('other');
-        $this->assertEquals(1, count($listeners));
+        $this->assertCount(1, $listeners);
         $this->assertContains($listenerOther, $listeners);
     }
 

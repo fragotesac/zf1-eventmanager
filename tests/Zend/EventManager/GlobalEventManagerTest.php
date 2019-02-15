@@ -71,7 +71,7 @@ class Zend_EventManager_GlobalEventManagerTest extends PHPUnit\Framework\TestCas
         $this->assertEquals(array('foo.bar'), $events);
 
         $listeners = Zend_EventManager_GlobalEventManager::getListeners('foo.bar');
-        $this->assertEquals(1, count($listeners));
+        $this->assertCount(1, $listeners);
         $this->assertTrue($listeners->contains($listener));
 
         Zend_EventManager_GlobalEventManager::detach($listener);
