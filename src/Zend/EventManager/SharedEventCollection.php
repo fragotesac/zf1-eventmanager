@@ -28,5 +28,10 @@
  */
 interface Zend_EventManager_SharedEventCollection
 {
+    /**
+     * @param string $id
+     * @param string $event
+     * @return mixed
+     */
     public function getListeners($id, $event);
 }

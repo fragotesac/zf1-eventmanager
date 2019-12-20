@@ -211,6 +211,7 @@ class Zend_EventManager_EventManager implements Zend_EventManager_EventCollectio
      * @param  string|object $target Object calling emit, or symbol describing target (such as static method name)
      * @param  array|ArrayAccess $argv Array of arguments; typically, should be associative
      * @param  callable $callback
+     * @return Zend_EventManager_ResponseCollection
      * @throws Zend_Stdlib_Exception_InvalidCallbackException if invalid callback provided
      */
     public function triggerUntil($event, $target, $argv = null, $callback = null)

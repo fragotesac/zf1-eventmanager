@@ -29,6 +29,9 @@
  */
 class Zend_EventManager_ResponseCollection extends SplStack
 {
+    /**
+     * @var bool
+     */
     protected $stopped = false;
 
     /**
@@ -83,6 +86,7 @@ class Zend_EventManager_ResponseCollection extends SplStack
      * Check if any of the responses match the given value.
      *
      * @param  mixed $value The value to look for among responses
+     * @return bool
      */
     public function contains($value)
     {

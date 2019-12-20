@@ -40,6 +40,7 @@ interface Zend_EventManager_ListenerAggregate
      * implementation will pass this to the aggregate.
      *
      * @param Zend_EventManager_EventCollection $events
+     * @return mixed
      */
     public function attach(Zend_EventManager_EventCollection $events);
 
@@ -47,6 +48,7 @@ interface Zend_EventManager_ListenerAggregate
      * Detach all previously attached listeners
      *
      * @param Zend_EventManager_EventCollection $events
+     * @return mixed
      */
     public function detach(Zend_EventManager_EventCollection $events);
 }
