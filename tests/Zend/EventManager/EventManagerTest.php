@@ -30,7 +30,7 @@
  */
 class Zend_EventManager_EventManagerTest extends PHPUnit\Framework\TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         if (isset($this->message)) {
             unset($this->message);
@@ -82,7 +82,7 @@ class Zend_EventManager_EventManagerTest extends PHPUnit\Framework\TestCase
         $callback  = array($this, 'returnName');
         $listeners = $this->events->attach(array('foo', 'bar'), $callback);
 
-        $this->assertInternalType('array', $listeners);
+        $this->assertIsArray($listeners);
 
         foreach ($listeners as $listener) {
             $this->assertTrue($listener instanceof Zend_Stdlib_CallbackHandler);

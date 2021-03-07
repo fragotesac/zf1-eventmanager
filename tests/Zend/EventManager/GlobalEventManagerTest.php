@@ -30,7 +30,7 @@
  */
 class Zend_EventManager_GlobalEventManagerTest extends PHPUnit\Framework\TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         Zend_EventManager_GlobalEventManager::setEventCollection(null);
     }
