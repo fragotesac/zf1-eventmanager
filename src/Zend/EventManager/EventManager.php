@@ -40,6 +40,7 @@ class Zend_EventManager_EventManager implements Zend_EventManager_EventCollectio
 
     /**
      * @var string Class representing the event being emitted
+     * @phpstan-var class-string<Zend_EventManager_Event>
      */
     protected $eventClass = Zend_EventManager_Event::class;
 
@@ -189,7 +190,9 @@ class Zend_EventManager_EventManager implements Zend_EventManager_EventCollectio
         } else {
             $e = new $this->eventClass();
             $e->setName($event);
-            $e->setTarget($target);
+            if ($target !== null) {
+                $e->setTarget($target);
+            }
             $e->setParams($argv);
         }
 
@@ -232,7 +235,9 @@ class Zend_EventManager_EventManager implements Zend_EventManager_EventCollectio
             $e = new $this->eventClass();
             $e->setName($event);
             $e->setTarget($target);
-            $e->setParams($argv);
+            if ($argv !== null) {
+                $e->setParams($argv);
+            }
         }
 
         if (!is_callable($callback)) {

@@ -473,9 +473,6 @@ class Zend_EventManager_EventManagerTest extends PHPUnit\Framework\TestCase
 
     public function testWeakRefsAreHonoredWhenTriggering()
     {
-        if (version_compare(PHP_VERSION, '5.3.0', '<')) {
-            $this->markTestSkipped('Requires PHP >= 5.3.0 as it tests functors');
-        }
         if (!class_exists('WeakRef', false)) {
             $this->markTestSkipped('Requires pecl/weakref');
         }

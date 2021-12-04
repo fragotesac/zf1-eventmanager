@@ -4,42 +4,46 @@ parameters:
     level: 8
     paths:
         - ./
-    excludes_analyse:
+    excludePaths:
         - %rootDir%/../../../vendor/*
         - %rootDir%/../../../tests/*
     ignoreErrors:
         -
             message: '#Access to an undefined property Zend_EventManager_FilterChain::\$responses\.#'
-            path: %currentWorkingDirectory%/src/Zend/EventManager/FilterChain.php
+            path: ./src/Zend/EventManager/FilterChain.php
         -
             message: '#Method Zend_EventManager_GlobalEventManager::getEventCollection\(\) should return Zend_EventManager_EventCollection but returns Zend_EventManager_EventCollection\|null\.#'
-            path: %currentWorkingDirectory%/src/Zend/EventManager/GlobalEventManager.php
+            path: ./src/Zend/EventManager/GlobalEventManager.php
         -
             message: '#Method Zend_EventManager_ListenerAggregate::attach\(\) invoked with 2 parameters, 1 required\.#'
-            path: %currentWorkingDirectory%/src/Zend/EventManager/EventManager.php
+            path: ./src/Zend/EventManager/EventManager.php
         -
             message: '#Parameter \#1 \$identifiers of method Zend_EventManager_EventManager::setIdentifiers\(\) expects array\|int\|string\|Traversable, array\|int\|string\|Traversable\|null given\.#'
-            path: %currentWorkingDirectory%/src/Zend/EventManager/EventManager.php
+            path: ./src/Zend/EventManager/EventManager.php
         -
             message: '#Parameter \#3 \$callback of method Zend_EventManager_EventManager::triggerListeners\(\) expects \(callable\(\): mixed\)\|null, array\|\(callable\(\): mixed\)\|object\|string\|null given\.#'
-            path: %currentWorkingDirectory%/src/Zend/EventManager/EventManager.php
+            path: ./src/Zend/EventManager/EventManager.php
         -
             message: '#Parameter \#1 \$params \(array\|object\) of method Zend_EventManager_Event::setParams\(\) should be compatible with parameter \$params \(string\) of method Zend_EventManager_EventDescription::setParams\(\)#'
-            path: %currentWorkingDirectory%/src/Zend/EventManager/Event.php
+            path: ./src/Zend/EventManager/Event.php
         -
             message: '#Cannot cast \(callable\(\): mixed\)\|int\|null to int\.#'
-            path: %currentWorkingDirectory%/src/Zend/EventManager/EventManager.php
+            path: ./src/Zend/EventManager/EventManager.php
         -
             message: '#Return type \(Zend_EventManager_Filter_FilterIterator\) of method Zend_EventManager_FilterChain::getFilters\(\) should be compatible with return type \(array\) of method Zend_EventManager_Filter::getFilters\(\)#'
-            path: %currentWorkingDirectory%/src/Zend/EventManager/FilterChain.php
+            path: ./src/Zend/EventManager/FilterChain.php
 
         # Defensive coding, types can't be enforced via php type-hints
         -
             message: '#Result of && is always false\.#'
-            path: %currentWorkingDirectory%/src/Zend/EventManager/Event.php
+            path: ./src/Zend/EventManager/Event.php
         -
             message: '#Else branch is unreachable because ternary operator condition is always true\.#'
-            path: %currentWorkingDirectory%/src/Zend/EventManager/Event.php
+            path: ./src/Zend/EventManager/Event.php
         -
             message: '#Else branch is unreachable because ternary operator condition is always true.#'
-            path: %currentWorkingDirectory%/src/Zend/EventManager/EventManager.php
+            path: ./src/Zend/EventManager/EventManager.php
+        # this seems to be a mistake in phpstan, as I'm not sure what's more "class-string" than "Class::class"
+        -
+            message: '#Property Zend_EventManager_EventManager::\$eventClass \(class-string<Zend_EventManager_Event>\) does not accept string\.#'
+            path: ./src/Zend/EventManager/EventManager.php
