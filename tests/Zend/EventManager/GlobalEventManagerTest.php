@@ -30,6 +30,8 @@
  */
 class Zend_EventManager_GlobalEventManagerTest extends PHPUnit\Framework\TestCase
 {
+    protected $test;
+
     public function setUp(): void
     {
         Zend_EventManager_GlobalEventManager::setEventCollection(null);
@@ -38,16 +40,16 @@ class Zend_EventManager_GlobalEventManagerTest extends PHPUnit\Framework\TestCas
     public function testStoresAnEventManagerInstanceByDefault()
     {
         $events = Zend_EventManager_GlobalEventManager::getEventCollection();
-        $this->assertTrue($events instanceof Zend_EventManager_EventManager);
+        $this->assertInstanceOf(Zend_EventManager_EventManager::class, $events);
     }
 
     public function testPassingNullValueForEventCollectionResetsInstance()
     {
         $events = Zend_EventManager_GlobalEventManager::getEventCollection();
-        $this->assertTrue($events instanceof Zend_EventManager_EventManager);
+        $this->assertInstanceOf(Zend_EventManager_EventManager::class, $events);
         Zend_EventManager_GlobalEventManager::setEventCollection(null);
         $events2 = Zend_EventManager_GlobalEventManager::getEventCollection();
-        $this->assertTrue($events2 instanceof Zend_EventManager_EventManager);
+        $this->assertInstanceOf(Zend_EventManager_EventManager::class, $events2);
         $this->assertNotSame($events, $events2);
     }
 
@@ -55,7 +57,7 @@ class Zend_EventManager_GlobalEventManagerTest extends PHPUnit\Framework\TestCas
     {
         $this->test = new stdClass();
         $listener   = Zend_EventManager_GlobalEventManager::attach('foo.bar', array($this, 'aggregateEventMetadata'));
-        $this->assertTrue($listener instanceof Zend_Stdlib_CallbackHandler);
+        $this->assertInstanceOf(Zend_Stdlib_CallbackHandler::class, $listener);
 
         Zend_EventManager_GlobalEventManager::trigger('foo.bar', $this, array('foo' => 'bar'));
         $this->assertSame($this, $this->test->target);

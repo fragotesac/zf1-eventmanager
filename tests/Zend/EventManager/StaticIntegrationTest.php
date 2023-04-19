@@ -30,6 +30,9 @@
  */
 class Zend_EventManager_StaticIntegrationTest extends PHPUnit\Framework\TestCase
 {
+    protected $counter;
+    protected $test;
+
     public function setUp(): void
     {
         Zend_EventManager_StaticEventManager::resetInstance();

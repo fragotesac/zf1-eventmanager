@@ -30,6 +30,8 @@
  */
 class Zend_EventManager_StaticEventManagerTest extends PHPUnit\Framework\TestCase
 {
+    protected $test;
+
     public function setUp(): void
     {
         Zend_EventManager_StaticEventManager::resetInstance();
@@ -70,7 +72,7 @@ class Zend_EventManager_StaticEventManagerTest extends PHPUnit\Framework\TestCas
         $expected  = array($this, __FUNCTION__);
         $found     = false;
         $listeners = $events->getListeners('foo', 'bar');
-        $this->assertTrue($listeners instanceof Zend_Stdlib_PriorityQueue);
+        $this->assertInstanceOf(Zend_Stdlib_PriorityQueue::class, $listeners);
         $this->assertTrue(0 < count($listeners), 'Empty listeners!');
         foreach ($listeners as $listener) {
             if ($expected === $listener->getCallback()) {
@@ -91,7 +93,7 @@ class Zend_EventManager_StaticEventManagerTest extends PHPUnit\Framework\TestCas
         foreach (array('foo', 'test') as $event) {
             $found     = false;
             $listeners = $events->getListeners('bar', $event);
-            $this->assertTrue($listeners instanceof Zend_Stdlib_PriorityQueue);
+            $this->assertInstanceOf(Zend_Stdlib_PriorityQueue::class, $listeners);
             $this->assertTrue(0 < count($listeners), 'Empty listeners!');
             foreach ($listeners as $listener) {
                 if ($expected === $listener->getCallback()) {
@@ -113,7 +115,7 @@ class Zend_EventManager_StaticEventManagerTest extends PHPUnit\Framework\TestCas
         foreach (array('foo', 'test') as $id) {
             $found     = false;
             $listeners = $events->getListeners($id, 'bar');
-            $this->assertTrue($listeners instanceof Zend_Stdlib_PriorityQueue);
+            $this->assertInstanceOf(Zend_Stdlib_PriorityQueue::class, $listeners);
             $this->assertTrue(0 < count($listeners), 'Empty listeners!');
             foreach ($listeners as $listener) {
                 if ($expected === $listener->getCallback()) {
@@ -136,7 +138,7 @@ class Zend_EventManager_StaticEventManagerTest extends PHPUnit\Framework\TestCas
             foreach (array('foo', 'test') as $event) {
                 $found     = false;
                 $listeners = $events->getListeners($resource, $event);
-                $this->assertTrue($listeners instanceof Zend_Stdlib_PriorityQueue);
+                $this->assertInstanceOf(Zend_Stdlib_PriorityQueue::class, $listeners);
                 $this->assertTrue(0 < count($listeners), 'Empty listeners!');
                 foreach ($listeners as $listener) {
                     if ($expected === $listener->getCallback()) {
@@ -190,7 +192,7 @@ class Zend_EventManager_StaticEventManagerTest extends PHPUnit\Framework\TestCas
         $events = Zend_EventManager_StaticEventManager::getInstance();
         $events->attach('foo', 'bar', array($this, __FUNCTION__));
         $listeners = $events->getListeners('foo', 'bar');
-        $this->assertTrue($listeners instanceof Zend_Stdlib_PriorityQueue);
+        $this->assertInstanceOf(Zend_Stdlib_PriorityQueue::class, $listeners);
         $this->assertCount(1, $listeners);
     }
 

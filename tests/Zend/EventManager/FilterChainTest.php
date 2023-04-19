@@ -31,6 +31,9 @@
  */
 class Zend_EventManager_FilterChainTest extends PHPUnit\Framework\TestCase
 {
+    protected $message;
+    protected $filterchain;
+
     public function setUp(): void
     {
         if (isset($this->message)) {
@@ -41,13 +44,13 @@ class Zend_EventManager_FilterChainTest extends PHPUnit\Framework\TestCase
 
     public function testSubscribeShouldReturnCallbackHandler()
     {
-        $handle = $this->filterchain->attach(array( $this, __METHOD__ ));
-        $this->assertTrue($handle instanceof Zend_Stdlib_CallbackHandler);
+        $handle = $this->filterchain->attach(array( $this, __FUNCTION__ ));
+        $this->assertInstanceOf(Zend_Stdlib_CallbackHandler::class, $handle);
     }
 
     public function testSubscribeShouldAddCallbackHandlerToFilters()
     {
-        $handler  = $this->filterchain->attach(array($this, __METHOD__));
+        $handler  = $this->filterchain->attach(array($this, __FUNCTION__));
         $handlers = $this->filterchain->getFilters();
         $this->assertCount(1, $handlers);
         $this->assertTrue($handlers->contains($handler));
@@ -55,7 +58,7 @@ class Zend_EventManager_FilterChainTest extends PHPUnit\Framework\TestCase
 
     public function testDetachShouldRemoveCallbackHandlerFromFilters()
     {
-        $handle  = $this->filterchain->attach(array( $this, __METHOD__ ));
+        $handle  = $this->filterchain->attach(array( $this, __FUNCTION__));
         $handles = $this->filterchain->getFilters();
         $this->assertTrue($handles->contains($handle));
         $this->filterchain->detach($handle);
@@ -65,7 +68,7 @@ class Zend_EventManager_FilterChainTest extends PHPUnit\Framework\TestCase
 
     public function testDetachShouldReturnFalseIfCallbackHandlerDoesNotExist()
     {
-        $handle1 = $this->filterchain->attach(array( $this, __METHOD__ ));
+        $handle1 = $this->filterchain->attach(array( $this, __FUNCTION__));
         $this->filterchain->clearFilters();
         $handle2 = $this->filterchain->attach(array( $this, 'handleTestTopic' ));
         $this->assertFalse($this->filterchain->detach($handle1));
@@ -126,7 +129,7 @@ class Zend_EventManager_FilterChainTest extends PHPUnit\Framework\TestCase
 
     public function filterReceivalCallback($context, array $params, $chain)
     {
-        $this->assertTrue($chain instanceof Zend_EventManager_Filter_FilterIterator);
+        $this->assertInstanceOf(Zend_EventManager_Filter_FilterIterator::class, $chain);
     }
 
     public function filterTrim($context, $params, $chain)
